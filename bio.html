@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio — Jess Kendrick</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="logos/favicon-16x16.png">
+    <style>
+        @font-face {
+            font-family: 'Jes CMU';
+            src: url('fonts/Jes_cmu-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Caps';
+            src: url('fonts/Caps-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'JesFont2';
+            src: url('fonts/JesFont2-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --accent: #6B9BD1;
+            --text: #333;
+            --muted: #666;
+            --light: #999;
+            --border: #e0e0e0;
+            --bg-soft: #ffffff;
+
+            --dark-bg: #ffffff;
+            --dark-text: #323130;
+            --dark-muted: #9a9489;
+            --dark-accent: #c46b3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Jes CMU', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #ffffff;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        /* ── HEADER ── */
+        header {
+            padding: 40px 60px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 img {
+            height: 90px;
+            width: auto;
+            display: block;
+        }
+
+        nav { margin-top: 20px; }
+
+        nav a {
+            margin-right: 30px;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--text); }
+
+        nav a.active {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ── DARK BIO HERO ── */
+        .bio-hero {
+            background-color: var(--dark-bg);
+            padding: 75px 0 95px;
+        }
+
+        .bio-hero-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 120px;
+        }
+
+        .bio-hero-label {
+            font-family: 'Caps', serif;
+            font-size: 5rem;
+            color: var(--dark-accent);
+            letter-spacing: 0.1rem;
+            margin-bottom: 60px;
+            display: flex;
+            gap: 1.1em;
+        }
+
+        /* ── FLOAT LAYOUT ── */
+        .bio-hero-float {
+            overflow: hidden; /* clearfix */
+        }
+
+        .bio-hero-photo {
+            float: left;
+            width: 42%;
+            margin-right: 60px;
+            margin-bottom: 20px;
+        }
+
+        .bio-hero-photo img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .bio-hero-tagline {
+            font-family: 'JesFont2', cursive;
+            font-size: 2.5rem;
+            color: var(--dark-text);
+            line-height: 1.5;
+            margin-bottom: 52px;
+            letter-spacing: 0.02em;
+        }
+
+        .bio-hero-body {
+            font-family: 'Jes CMU', Georgia, serif;
+            color: var(--dark-muted);
+            line-height: 2.05;
+            font-size: 1.08rem;
+            letter-spacing: 0.015em;
+        }
+
+        .bio-hero-body p + p { margin-top: 1.5em; }
+
+        /* ── CONTENT SECTIONS ── */
+        .section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 75px 120px 95px;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-header { margin-bottom: 55px; }
+
+        .section-header h3 {
+            font-family: 'CAPS';
+            font-size: 4.6rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .section-description {
+            max-width: 800px;
+            color: var(--muted);
+            line-height: 2.0;
+            font-size: 1.25rem;
+            margin-bottom: 55px;
+        }
+
+        .section-description p + p { margin-top: 1.3em; }
+
+        /* ── BENTO GRID ── */
+        .ceramics-bento {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        /* When the bento grid is an anchor tag */
+        a.bento-link {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .ceramics-bento .col-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ceramics-bento .col-left .thumb-wrap {
+            overflow: hidden;
+            background-color: var(--bg-soft);
+            cursor: pointer;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .ceramics-bento .col-left .thumb-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        
+
+        .ceramics-bento .col-right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .ceramics-bento .col-right .cell {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ceramics-bento .col-right .thumb-wrap {
+            overflow: hidden;
+            background-color: var(--bg-soft);
+            cursor: pointer;
+            aspect-ratio: 1;
+        }
+
+        .ceramics-bento .col-right .thumb-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            
+        }
+
+        /* ── ANIMATED TRIO SECTION ── */
+        .animated-trio {
+            border-top: 1px solid var(--border);
+            padding: 95px 95px 1px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .animated-trio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+        }
+
+        .item {
+            overflow: hidden;
+            background-color: var(--bg-soft);
+            cursor: pointer;
+            aspect-ratio: 1;
+        }
+
+        .item img {
+            width: auto;
+            height: 60%;
+            object-fit: cover;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* ── SHARED SITE FOOTER ── */
+        .site-footer {
+            background-color: #ffffff;
+            border-top: 1px solid #ffffff;
+            padding: 22px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-footer .footer-copy {
+            font-size: 0.82rem;
+            color: #888;
+            letter-spacing: 0.01em;
+        }
+
+        .site-footer .footer-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .site-footer .footer-email {
+            font-family: 'CAPS';
+            font-size: 2.82rem;
+            text-transform: uppercase;
+            color: #c46b3a;
+            text-decoration: none;
+            letter-spacing: 0.01em;
+            transition: color 0.2s;
+        }
+
+        .site-footer .footer-email:hover {
+            color: #222;
+        }
+
+        .site-footer .footer-socials {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .site-footer .footer-socials a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .site-footer .footer-socials img {
+            max-height: 30px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            transition: opacity 0.3s;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            header { padding: 30px; }
+
+            .bio-hero { padding: 50px 0 60px; }
+
+            .bio-hero-inner { padding: 0 30px; }
+
+            .bio-hero-label {
+                font-size: 3.3rem;
+                margin-bottom: 36px;
+            }
+
+            .bio-hero-photo {
+                float: none;
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .bio-hero-tagline {
+                font-size: 1.3rem;
+                margin-bottom: 32px;
+            }
+
+            .bio-hero-body { font-size: 0.95rem; }
+
+            .section { padding: 50px 30px 65px; }
+
+            .section-header h3 { font-size: 3.3rem; }
+
+            .section-description { font-size: 0.95rem; }
+
+            .ceramics-bento { grid-template-columns: 1fr; }
+
+            .ceramics-bento .col-left .thumb-wrap { aspect-ratio: 4 / 3; }
+
+            .ceramics-bento .col-right {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+
+            .animated-trio {
+                padding: 50px 30px 65px;
+            }
+
+            .site-footer {
+                padding: 18px 30px;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>
+            <a href="index.html"><img src="logos/logob.png" alt="Jess Kendrick"></a>
+        </h1>
+        <nav>
+            <a href="bio.html" class="active">BIO</a>
+            <a href="index.html?filter=all">SHOP ALL WORK</a>
+            <a href="index.html?filter=drawings">DRAWINGS</a>
+            <a href="index.html?filter=prints">PRINTS</a>
+            <a href="index.html?filter=ceramics">CERAMICS</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLF_ZI80f1GxvsuULUVRJl_PAKqpI-jMgmO178tHxpAXiw4g/viewform?usp=header" target="_blank">NEWSLETTER</a>
+            <a href="#cv">CV</a>
+        </nav>
+    </header>
+
+    <!-- DARK BIO HERO -->
+    <section class="bio-hero">
+        <div class="bio-hero-inner">
+            <div class="bio-hero-label">
+                <span>JesS Kendrick</span>
+            </div>
+
+            <div class="bio-hero-float">
+                <div class="bio-hero-photo">
+                    <img src="images/profile-pic.jpg" alt="Jess Kendrick">
+                </div>
+
+                <p class="bio-hero-tagline">Expressing love of wild things with color and line</p>
+
+                <div class="bio-hero-body">
+                    <p>Early in 2025 walking through a field feeling anxious about protecting wild places
+                    and things, I felt the compulsion to document and remember all that I love on this planet.
+                    Through this feeling emerged the question: How would one go about drawing every blade of grass?
+                    This is surely an impossible task - but perhaps I can capture the essence of every blade
+                    bending in the wind to be seen and appreciated by the viewer of the drawing.</p>
+                    <p>In drawing and sculpting the things I see, the simple act of slowing down and noticing
+                    things seems like I am giving the subject a name in a way that it did not have before.
+                    I find refuge in this idea. With climate change we have so much to lose. This problem has
+                    intricacies on a scale that is far beyond what we could ever conceptualize in our current
+                    paradigm and the way our brains work. What is perhaps more frightening are the things we
+                    are at risk to lose that we are not yet aware of.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERAMICS SECTION -->
+    <div class="section">
+        <div class="section-header">
+            <h3>Ceramics</h3>
+        </div>
+        <div class="section-description">
+            <p>All of my pottery is thrown first on the wheel and then sculpted on when the pots become
+            "leather hard". The motifs used in my pieces are often of the creepy crawly nature because I find
+            the anatomy of insects, frogs, and lizards lend themselves very well to clinging to the clay.</p>
+        </div>
+        <a href="index.html?filter=ceramics" class="ceramics-bento bento-link">
+            <div class="col-left">
+                <div class="thumb-wrap">
+                    <img src="images/ceramics/butterfly1.webp" alt="Mariposa Vase">
+                </div>
+            </div>
+            <div class="col-right">
+                <div class="cell"><div class="thumb-wrap"><img src="images/ceramics/beard.png" alt="Tea Bowl"></div></div>
+                <div class="cell"><div class="thumb-wrap"><img src="images/ceramics/dragon2.png" alt="Friends"></div></div>
+                <div class="cell"><div class="thumb-wrap"><img src="images/ceramics/tea.png" alt="Mariposa II"></div></div>
+                <div class="cell"><div class="thumb-wrap"><img src="images/ceramics/red-eye.webp"alt="hat"></div></div>
+            </div>
+        </a>
+    </div>
+
+    <!-- PRINTS SECTION -->
+    <div class="section">
+        <div class="section-header">
+            <h3>Prints</h3>
+        </div>
+        <div class="section-description">
+            <p>These giclee prints are color-matched locally by the experts at The Painted Pixel in the Denver West 40
+            Arts District and printed onto premium archival quality watercolor paper. Currently I have a selection of 10 prints availble 
+            from my show Every Blade of Grass.</p>
+        </div>
+        <a href="index.html?filter=prints" class="ceramics-bento bento-link">
+            <div class="col-left">
+                <div class="thumb-wrap">
+                    <img src="images/prints/dance1.webp" alt="Dance on Green Mountain">
+                </div>
+            </div>
+            <div class="col-right">
+                <div class="cell"><div class="thumb-wrap"><img src="images/prints/birds2.webp" alt="Birds of a Feather"></div></div>
+                <div class="cell"><div class="thumb-wrap"><img src="images/prints/trans.webp" alt="Stump Town"></div></div>
+                <div class="cell"><div class="thumb-wrap"><img src="images/prints/cell.webp" alt="The Silver Maple"></div></div>
+                <div class="cell"><div class="thumb-wrap"><img src="images/prints/pile.webp" alt="The Pile"></div></div>
+            </div>
+        </a>
+    </div>
+
+    <!-- ORIGINAL DRAWINGS SECTION -->
+    <div class="section">
+        <div class="section-header">
+            <h3>Original Drawings</h3>
+        </div>
+        <div class="section-description">
+            <p>If you are interested in purchasing an original drawing please sign up for my email list
+            to be updated on new bodies of work.</p>
+        </div>
+        <a href="index.html?filter=drawings" class="ceramics-bento bento-link">
+            <div class="col-left">
+                <div class="thumb-wrap">
+                    <img src="images/DRAWINGS/stumpsquare.jpg" alt="Show Hang">
+                </div>
+            </div>
+            <div class="col-right">
+                <div class="cell"><div class="thumb-wrap"><img src="images/DRAWINGS/Fibonacci Spiral square.jpg" alt="Cone"></div></div>
+                <div class="cell"><div class="thumb-wrap"><img src="images/DRAWINGS/dreamsquare.jpg" alt="Dance &amp; Stump"></div></div>
+                <div class="cell"><div class="thumb-wrap"><img src="images/DRAWINGS/Indian Paintbrush.jpg" alt="Dream"></div></div>
+                <div class="cell"><div class="thumb-wrap"><img src="images/DRAWINGS/july-progress-square.webp" alt="ebog"></div></div>
+                
+            </div>
+        </a>
+    </div>
+
+<!-- ANIMATED TRIO SECTION -->
+<div class="animated-trio">
+    <div class="animated-trio-grid">
+
+        <a href="bio.html" style="display:contents">
+            <div class="item" data-folder="bio" data-frames="56">
+                <img src="" alt="Bio animation">
+            </div>
+        </a>
+
+        <a href="index.html?filter=drawings" style="display:contents">
+            <div class="item" data-folder="ebog" data-frames="46">
+                <img src="" alt="Ebog animation">
+            </div>
+        </a>
+
+        <a href="index.html" style="display:contents">
+            <div class="item" data-folder="shop" data-frames="52">
+                <img src="" alt="Shop animation">
+            </div>
+        </a>
+
+    </div>
+</div>
+
+  
+
+    <!-- SHARED FOOTER -->
+    <footer>
+        <div class="site-footer">
+            <span class="footer-copy">Copyright &copy; Jess Kendrick</span>
+            <div class="footer-right">
+                <a href="mailto:jkendrick.art@gmail.com" class="footer-email">jkendrick.art@gmail.com</a>
+                <div class="footer-socials">
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/j.kendrickart?igsh=cTBibHpzajA4N3Jw&utm_source=qr" target="_blank" aria-label="Instagram"
+                       onmouseover="this.querySelector('img').src='logos/insta-c2.png'"
+                       onmouseout="this.querySelector('img').src='logos/insta.png'">
+                        <img src="logos/insta.png" alt="Instagram">
+                    </a>
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com/@j.kendrickart" target="_blank" aria-label="YouTube"
+                       onmouseover="this.querySelector('img').src='logos/ytred2.png'"
+                       onmouseout="this.querySelector('img').src='logos/ytb.png'">
+                        <img src="logos/ytb.png" alt="YouTube">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.item').forEach(item => {
+    const frames = parseInt(item.dataset.frames, 10) || 0;
+    const folder = item.dataset.folder || '';
+    const img = item.querySelector('img');
+    if (!img) return;
+
+    // Build frame URLs
+    const urls = Array.from({ length: frames }, (_, i) => 
+      `images/${folder}/${folder}-${i + 1}.webp`
+    );
+
+    // Setup image
+    img.draggable = false;
+    img.style.visibility = 'hidden';
+    
+    // Preload and show first frame
+    const preload = new Image();
+    preload.onload = () => {
+      img.src = urls[0];
+      img.style.visibility = 'visible';
+    };
+    preload.src = urls[0];
+
+    // Animation state
+    let timer = null;
+    let currentFrame = 0;
+    let hasFinished = false;
+
+    const stopAnimation = () => clearInterval(timer);
+    
+    const animate = (direction, fps) => {
+      stopAnimation();
+      timer = setInterval(() => {
+        currentFrame += direction;
+        
+        if (currentFrame >= urls.length - 1) {
+          currentFrame = urls.length - 1;
+          hasFinished = true;
+          stopAnimation();
+        } else if (currentFrame <= 0) {
+          currentFrame = 0;
+          stopAnimation();
+        }
+        
+        img.src = urls[currentFrame];
+      }, 1000 / fps);
+    };
+
+    const handleEnter = () => {
+      if (hasFinished) {
+        currentFrame = 0;
+        hasFinished = false;
+      }
+      animate(1, 10); // Forward at 10 fps
+    };
+
+    const handleLeave = () => {
+      if (!hasFinished) animate(-1, 18); // Backward at 18 fps
+    };
+
+    // Event listeners
+    img.addEventListener('mouseenter', handleEnter);
+    img.addEventListener('mouseleave', handleLeave);
+    item.addEventListener('touchstart', handleEnter, { passive: true });
+    item.addEventListener('touchend', handleLeave, { passive: true });
+  });
+});
+</script>
+</body>
+</html>

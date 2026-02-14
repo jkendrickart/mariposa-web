@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Jes_cmu';
+    src: url('Jes_cmu-Regular.woff2') format('woff2'),
+        url('Jes_cmu-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
